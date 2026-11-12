@@ -1,0 +1,66 @@
+{
+  "field_mappings": {
+    "posting_date": {
+      "source": "column",
+      "column": "Posting Date",
+      "required": true
+    },
+    "document_date": {
+      "source": "column",
+      "column": "Transaction Date",
+      "required": true
+    },
+    "ext_document_no": {
+      "source": "column",
+      "column": "Posting ID",
+      "required": true,
+      "normalize": "token",
+      "max_length": 35,
+      "warn_on_truncate": true
+    },
+    "account_no": {
+      "source": "column",
+      "column": "G/L Account Number",
+      "required": true,
+      "normalize": "account"
+    },
+    "bal_account_no": {
+      "source": "column",
+      "column": "G/L Account Number",
+      "required": true,
+      "normalize": "account"
+    },
+    "description": {
+      "source": "column",
+      "column": "Type",
+      "required": true,
+      "value_map": {
+        "DEBIT": "Debit",
+        "CREDIT": "Credit"
+      }
+    },
+    "amount": {
+      "source": "signed_amount",
+      "column": "Amount",
+      "sign_column": "Type",
+      "negate_when": "DEBIT",
+      "round": 6,
+      "required": true
+    },
+    "currency_code": {
+      "source": "column",
+      "column": "Currency Code",
+      "required": true
+    },
+    "dim_country": {
+      "source": "column",
+      "column": "Customer Location",
+      "required": false,
+      "default": ""
+    },
+    "dim_project": {
+      "source": "static",
+      "value": ""
+    }
+  }
+}
